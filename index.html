@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>منصة الشفافية ومكافحة الفساد | سوسيولوجيا الفساد M1</title>
+  <style>
+    :root {
+      --primary: #0d9488;
+      --primary-dark: #0f766e;
+      --primary-light: #ccfbf1;
+      --secondary: #2563eb;
+      --bg-slate: #f8fafc;
+      --text-dark: #0f172a;
+      --text-muted: #475569;
+      --card-bg: #ffffff;
+      --border-color: #e2e8f0;
+      --accent-gold: #d97706;
+      --success: #16a34a;
+      --danger: #dc2626;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
+    body { background-color: var(--bg-slate); color: var(--text-dark); line-height: 1.8; padding-bottom: 60px; }
+    
+    header {
+      background: linear-gradient(135deg, var(--primary-dark), #1e293b);
+      color: white;
+      padding: 35px 20px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    header h1 { font-size: 2.2rem; margin-bottom: 8px; font-weight: 800; }
+    header p { font-size: 1.1rem; opacity: 0.95; }
+    .badge-info { display: inline-block; background: rgba(255,255,255,0.18); padding: 5px 16px; border-radius: 20px; font-size: 0.9rem; margin-top: 10px; }
+
+    .container { max-width: 1200px; margin: 25px auto; padding: 0 15px; }
+
+    /* Search Box */
+    .search-box { margin-bottom: 25px; }
+    .search-input {
+      width: 100%;
+      padding: 16px 20px;
+      font-size: 1.05rem;
+      border: 2px solid var(--border-color);
+      border-radius: 12px;
+      outline: none;
+      transition: all 0.3s ease;
+      background: white;
+    }
+    .search-input:focus { border-color: var(--primary); box-shadow: 0 0 0 4px var(--primary-light); }
+
+    /* Nav Tabs */
+    .nav-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 25px;
+      background: white;
+      padding: 10px;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+    }
+    .tab-btn {
+      flex: 1;
+      min-width: 150px;
+      padding: 12px 14px;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      text-align: center;
+    }
+    .tab-btn:hover { background: var(--bg-slate); color: var(--primary-dark); }
+    .tab-btn.active { background: var(--primary); color: white; box-shadow: 0 3px 6px rgba(13, 148, 136, 0.3); }
+
+    /* Tab Content Views */
+    .tab-content { display: none; }
+    .tab-content.active { display: block; animation: fadeIn 0.3s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Cards & Styling */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 26px;
+      margin-bottom: 22px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+    .card h3 { color: var(--primary-dark); font-size: 1.4rem; margin-bottom: 16px; border-bottom: 2px solid var(--primary-light); padding-bottom: 8px; }
+    .card h4 { color: #1e293b; font-size: 1.2rem; margin: 20px 0 10px; border-right: 4px solid var(--primary); padding-right: 10px; }
+
+    /* Highlights & Badges */
+    .legal-term { background-color: #fef3c7; color: #92400e; padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: 0.95em; border: 1px solid #fde68a; }
+    .law-badge { display: inline-block; background-color: #e0f2fe; color: #0369a1; padding: 3px 10px; border-radius: 6px; font-size: 0.85rem; font-weight: 700; margin-left: 6px; }
+    .scholar-badge { display: inline-block; background-color: #f3e8ff; color: #6b21a8; padding: 3px 10px; border-radius: 6px; font-size: 0.85rem; font-weight: 700; margin-left: 6px; }
+    .level-badge { display: inline-block; background-color: #dcfce7; color: #15803d; padding: 3px 10px; border-radius: 6px; font-size: 0.85rem; font-weight: 700; margin-left: 6px; }
+
+    /* Table */
+    .table-responsive { overflow-x: auto; margin: 18px 0; }
+    table { width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; }
+    th, td { padding: 12px 16px; border: 1px solid var(--border-color); text-align: right; font-size: 0.95rem; }
+    th { background-color: #f1f5f9; color: var(--text-dark); font-weight: 700; }
+
+    /* Grid Layouts */
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+    .review-card { background: #ffffff; border-right: 5px solid var(--primary); padding: 18px; border-radius: 8px; border: 1px solid var(--border-color); border-right-width: 5px; }
+
+    /* Quiz Engine */
+    .quiz-card { background: white; border: 1px solid var(--border-color); border-radius: 12px; padding: 22px; margin-bottom: 20px; }
+    .quiz-question { font-size: 1.15rem; font-weight: 700; margin-bottom: 16px; color: var(--text-dark); }
+    .quiz-options { display: flex; flex-direction: column; gap: 10px; }
+    .option-btn { width: 100%; text-align: right; padding: 14px 18px; background: #f8fafc; border: 1px solid var(--border-color); border-radius: 8px; font-size: 1rem; cursor: pointer; transition: all 0.2s ease; }
+    .option-btn:hover { background: #f1f5f9; border-color: #cbd5e1; }
+    .option-btn.correct { background: #dcfce7 !important; border-color: #22c55e !important; color: #15803d; font-weight: bold; }
+    .option-btn.incorrect { background: #fee2e2 !important; border-color: #ef4444 !important; color: #b91c1c; }
+    .explanation-box { margin-top: 15px; padding: 14px 18px; background: #f0fdf4; border-right: 4px solid var(--success); border-radius: 6px; display: none; font-size: 0.95rem; line-height: 1.7; }
+
+    /* Accordion Q&A */
+    .qa-card { background: white; border: 1px solid var(--border-color); border-radius: 10px; margin-bottom: 14px; overflow: hidden; }
+    .qa-header { width: 100%; text-align: right; padding: 18px 22px; background: white; border: none; font-size: 1.05rem; font-weight: 700; color: var(--primary-dark); cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+    .qa-header:hover { background: #f8fafc; }
+    .qa-body { padding: 0 22px 22px 22px; display: none; border-top: 1px solid #f1f5f9; background: #fafafa; }
+    .qa-body.show { display: block; padding-top: 16px; }
+
+    ul, ol { padding-right: 22px; margin-bottom: 14px; }
+    li { margin-bottom: 8px; }
+
+    footer { text-align: center; margin-top: 40px; color: var(--text-muted); font-size: 0.9rem; padding: 20px 0; border-top: 1px solid var(--border-color); }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>منصة  تعليمية تفاعلية </h1>
+    <p>المراجعةالشاملة في مقياس: سوسيولوجيا الفساد (Sociology of Corruption)</p>
+    <div class="badge-info">السنة الأولى ماستر (M1) |  من إعداد الطالب :مزروع سعود  طالب في جامعة التكوين المتواصل مركز الجزائر شرق</div>
+  </header>
+
+  <div class="container">
+
+    <!-- Search Engine -->
+    <div class="search-box">
+      <input type="text" id="searchInput" class="search-input" placeholder="🔍 ابحث في النظريات، القوانين، الرواد، والمفاهيم..." onkeyup="filterContent()">
+    </div>
+
+    <!-- Navigation Tabs -->
+    <div class="nav-tabs">
+      <button class="tab-btn active" onclick="switchTab('mod1')">📖 المقطع 1: المدخل</button>
+      <button class="tab-btn" onclick="switchTab('mod2')">🔬 المقطع 2: النظريات</button>
+      <button class="tab-btn" onclick="switchTab('mod3')">🏛️ المقطع 3: السياق والقانون</button>
+      <button class="tab-btn" onclick="switchTab('mod4')">🛡️ المقطع 4: الوقاية والرقمنة</button>
+      <button class="tab-btn" onclick="switchTab('review')">⚡ بطاقات الحفظ</button>
+      <button class="tab-btn" onclick="switchTab('quizzes')">📝 الاختبارات</button>
+      <button class="tab-btn" onclick="switchTab('exam')">🎓 أسئلة الامتحانات</button>
+    </div>
+
+    <!-- TAB 1: MODULE 1 -->
+    <div id="mod1" class="tab-content active">
+      <div class="card searchable">
+        <h3>المقطع الأول: مدخل إلى سوسيولوجيا الفساد (التعريفات، الأركان، الصور، والعلاقات)</h3>
+        
+        <h4>أولاً: تحديد مفهوم الفساد (المستويات الثلاثة)</h4>
+        <ul>
+          <li><strong>1. المفهوم اللغوي:</strong> يشير الفساد لغة إلى التغير عن الحالة السليمة، الخروج عن الاستقامة، الضرر والتلف، وهو نقيض الصلاح والتصلح.</li>
+          <li><strong>2. المفهوم الاصطلاحي والقانوني:</strong> <span class="legal-term">إساءة استخدام السلطة العامة</span> أو الوظيفة أو الموقع للحصول على منافع خاصة (مادية أو معنوية) مخالفة للقوانين واللوائح التنظيمية.</li>
+          <li><strong>3. المفهوم السوسيولوجي:</strong> يتجاوز مجرد الوصف القانوني أو الأخلاقي للفعل، لينظر إلى الفساد باعتباره ظاهرة اجتماعية وممارسة تتشكل وتستمر داخل شبكة من العلاقات الاجتماعية، والمؤسسات، والقواعد الرسمية وغير الرسمية، وضغوط المصالح والتوقعات التبادلية.</li>
+        </ul>
+
+        <h4>ثانياً: أركان وعناصر الفعل الفاسد من المنظور السوسيولوجي (5 أركان)</h4>
+        <ol>
+          <li><strong>أ. موقع السلطة أو القرار التنظيمي:</strong> وجود شخص يمتلك سلطة تقديرية، أو موضع قرار، أو نفوذًا إداريًا/مؤسسيًا.</li>
+          <li><strong>ب. سوء الاستغلال أو التجاوز:</strong> توجيه السلطة أو الموارد العامة لخدمة مأرب غير مشروعة بدلاً من المصلحة العامة.</li>
+          <li><strong>ج. المنفعة الخاصة:</strong> الحصول أو منح منفعة مالية، أو مكسب وظيفي، أو خدمة، أو حماية.</li>
+          <li><strong>د. العلاقة التبادلية:</strong> وجود تفاعل بين طرفين أو أكثر يقوم على التبادل والتواطؤ أو الضغط.</li>
+          <li><strong>هـ. السياق الاجتماعي والمؤسساتي:</strong> وقوع الفعل داخل بيئة تنظيمية وثقافية تسمح بتكراره أو تغفل عن رقابته.</li>
+        </ol>
+
+        <h4>ثالثاً: الصور والأشكال الأساسية للفساد</h4>
+        <ul>
+          <li><span class="legal-term">الرشوة (Bribery):</span> عرض أو طلب أو قبول أداء منفعة مقابل القيام بعمل أو الامتناع عن عمل من أعمال الوظيفة.</li>
+          <li><span class="legal-term">الاختلاس (Embezzlement):</span> تبديد أو اختلاس أو استيلاء غير مشروع على أموال أو ممتلكات عامة أو خاصة وُضعت تحت يد الموظف بحكم وظيفته.</li>
+          <li><span class="legal-term">استغلال النفوذ (Trading in Influence):</span> استغلال الموقع الوظيفي أو السياسي للتأثير في قرارات سلطة أخرى للحصول على مزايا غير مستحقة.</li>
+          <li><span class="legal-term">المحسوبية والقرابة (Nepotism & Cronyism):</span> تفضيل الأقارب أو الحلفاء في التوظيف أو الترقيات أو منح الصفقات دون مراعاة معايير الاستحقاق والكفاءة.</li>
+          <li><span class="legal-term">الزبونية والمحاباة (Clientelism):</span> علاقات تبادلية قائمة على تقديم خدمات أو حماية مقابل ولاءات ودعم مستمر.</li>
+        </ul>
+
+        <h4>رابعاً: التمييز بين الوصف والتفسير في سوسيولوجيا الفساد</h4>
+        <ul>
+          <li><strong>1. الوصف الإمبريقي:</strong> يركز على إثبات وجود حالات الفساد، وتحديد أشكالها، وإحصاء عدد الجرائم وتكييفها القانوني.</li>
+          <li><strong>2. التفسير السوسيولوجي:</strong> يبحث في أسباب تركز الفساد في مرفق معين دون غيره، وكيفية تحول مخالفة فردية إلى ممارسة تنظيمية مستمرة، وطبيعة التفاعل بين القواعد الرسمية والتوقعات غير الرسمية <span class="scholar-badge">Heath, Richards, de Graaf</span>.</li>
+        </ul>
+
+        <h4>خامساً: علاقة سوسيولوجيا الفساد بالعلوم الأخرى</h4>
+        <ul>
+          <li><strong>أ. العلاقة بالقانون:</strong> يهتم القانون بتحديد الأفعال المجرمة والعقوبة والمسؤولية الجزائية، بينما تدرس السوسيولوجيا بيئة تطبيق القاعدة ودرجة امتثال الفاعلين.</li>
+          <li><strong>ب. العلاقة بعلم الإجرام (Criminology):</strong> يشتركان في تحليل دوافع السلوك الانحرافي، وتتميز السوسيولوجيا بالتركيز على التنظيم الاجتماعي وشبكات المصالح وليس فقط شخصية المجرم.</li>
+          <li><strong>ج. العلاقة بالعلوم السياسية والإدارة العامة:</strong> تبحث في توزيع السلطة، والسياسات العامة، والبيروقراطية الإدارية وتأثيرها على استقرار المؤسسات.</li>
+          <li><strong>د. العلاقة بعلم الاقتصاد:</strong> ترتبط بدراسة أثر الفساد على توزيع الموارد العامة، وتكلفة الاستثمار، والتبادل غير المشروع.</li>
+        </ul>
+
+        <h4>سادساً: جدول مقارنة بين المقاربة القانونية والمقاربة السوسيولوجية للفساد</h4>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>وجه المقارنة</th>
+                <th>المقاربة القانونية</th>
+                <th>المقاربة السوسيولوجية</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>موضوع التركيز</td>
+                <td>النص التشريعي، تجريم الفعل، وحدود المخالفة</td>
+                <td>السلوك الاجتماعي، الشروط التنظيمية، والبناء المؤسسي</td>
+              </tr>
+              <tr>
+                <td>السؤال المحوري</td>
+                <td>هل الفعل مجرم قانونًا؟ وما هي عقوبته؟</td>
+                <td>لماذا يظهر الفعل؟ وكيف يتكرر ويستمر داخل التنظيم؟</td>
+              </tr>
+              <tr>
+                <td>وحدة التحليل</td>
+                <td>الفعل الفردي والفاعل المسؤول جزائيًا</td>
+                <td>شبكة العلاقات، الجماعة، الثقافة التنظيمية، والمؤسسة</td>
+              </tr>
+              <tr>
+                <td>هدف الدراسة</td>
+                <td>تطبيق القانون، إثبات الجريمة، وإيقاع العقاب</td>
+                <td>تفكيك آليات الظاهرة، فهم التطبيع، وتعديل البيئة</td>
+              </tr>
+              <tr>
+                <td>طبيعة النتيجة</td>
+                <td>إدانة أو تبرئة شكلية وفق أحكام القانون</td>
+                <td>تفسير سوسيولوجي لآليات إنتاج وإعادة إنتاج الفساد</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: MODULE 2 (EXPANDED & DETAILED) -->
+    <div id="mod2" class="tab-content">
+      <div class="card searchable">
+        <h3>المقطع الثاني: المقاربات والنظريات السوسيولوجية المفسرة للفساد (الشرح التفصيلي)</h3>
+        
+        <!-- Theory 1 -->
+        <h4>1. المقاربة الوظيفية والبنائية الوظيفية (Functionalism) <span class="level-badge">مستوى التحليل: ماكرو / نسقي</span></h4>
+        <p><strong>الرواد والمرجعيات:</strong> <span class="scholar-badge">إميل دوركايم (Émile Durkheim)</span>، <span class="scholar-badge">تالكوت بارسونز (Talcott Parsons)</span>، <span class="scholar-badge">روبرت ميرتون (Robert K. Merton)</span>.</p>
+        <p><strong>التفسير الجوهري:</strong> تنظر هذه المقاربة إلى المجتمع باعتباره نسقًا يتكون من مؤسسات وقواعد تؤدي وظائف محددة للحفاظ على الاستقرار والتكامل. وفي هذا السياق، يبرز مساهمة <span class="scholar-badge">روبرت ميرتون</span> من خلال التمييز بين:</p>
+        <ul>
+          <li><strong>الوظيفة المعلنة (Manifest Function):</strong> الأهداف والمهام الظاهرة والتصريحية للمؤسسة (مثل تقديم الخدمة العمومية للمواطنين وفق مبدأ المساواة).</li>
+          <li><strong>الوظائف الكامنة (Latent Functions):</strong> النتائج والأدوار غير المعلنة التي قد تنشأ ضمن الممارسة الفعلية.</li>
+        </ul>
+        <p>برز مفهوم <strong>"الاختلال الوظيفي" (Dysfunction)</strong> عندما تصبح الخدمة العامة موضوعًا للتفاوض والمساومة، وتتحول الموارد والأدوات العامة إلى منافع ومكاسب خاصة للفاعلين.</p>
+
+        <!-- Theory 2 -->
+        <h4>2. نظرية اللامعيارية (Anomie Theory) <span class="level-badge">مستوى التحليل: بنيوي / ماكرو</span></h4>
+        <p><strong>الرواد والمرجعيات:</strong> <span class="scholar-badge">إميل دوركايم</span> و<span class="scholar-badge">روبرت ك. ميرتون</span>.</p>
+        <p><strong>التفسير الجوهري والتطور النظري:</strong></p>
+        <ul>
+          <li>طوّر <strong>دوركايم</strong> مفهوم اللامعيارية للتعبير عن حالة ضعف التنظيم المعياري وتفكك القواعد الضابطة في فترات التحول الاجتماعي السريع.</li>
+          <li>أعاد <strong>ميرتون</strong> صياغتها بنيويًا بتوضيح مفهوم <strong>"التوتر البنيوي" (Structural Strain)</strong> الناجم عن الفجوة بين أمرين:
+            <br>1. <strong>الأهداف الثقافية:</strong> التي يفرضها المجتمع ويدفع الأفراد لتحقيقها (كالنجاح المالي، الثراء، والجاه الاجتماعي).
+            <br>2. <strong>الوسائل المؤسسية المشروعة:</strong> الفرص والقنوات القانونية المتاحة فعليًا للوصول لتلك الأهداف.</li>
+        </ul>
+        <p>عندما تتعذر الوسائل المشروعة وتضعف الفرص المتكافئة، ينشأ ضغط بنيوي يدفع الفاعلين إلى تبني وسائل غير مشروعة كالرشوة، الاختلاس، واستغلال الوظيفة للوصول إلى الأهداف المرجوة.</p>
+        <p><strong>الحدود والنقد:</strong> الفساد لا يصدر فقط عن الفئات المحرومة نتيجة انسداد وسائل النجاح المشروعة، بل يرتكبه أيضًا أصحاب النفوذ والمواقع العليا للزيادة من ثرواتهم؛ لذا يجب عدم إسقاط اللامعيارية كحتمية سلوكية مطلقة.</p>
+
+        <!-- Theory 3 -->
+        <h4>3. نظرية المخالطة التفاضلية والتعلم الاجتماعي (Differential Association) <span class="level-badge">مستوى التحليل: ميكرو / جماعة</span></h4>
+        <p><strong>الرواد والمرجعيات:</strong> <span class="scholar-badge">إدوين ساذرلاند (Edwin Sutherland)</span>.</p>
+        <p><strong>التفسير الجوهري:</strong> يؤكد ساذرلاند أن السلوك الفاسد ليس سلوكًا فطريًا ولا ناتجًا عن خلل نفسي أو شخصي فقط، بل هو **سلوك مُتعلم** يتم من خلال التفاعل الاجتماعي اليومي داخل الجماعات القريبة ومحيط العمل الإداري. يتعلم الموظف الجديد أمرين أساسيين:</p>
+        <ol>
+          <li><strong>تقنيات تنفيذ الفعل الفاسد:</strong> الطرق والآليات العملية للتملص من الرقابة وتمرير المخالفات.</li>
+          <li><strong>التبريرات والتعريفات المشجعة:</strong> إعادة تأطير الفعل الفاسد بأسماء مقبولة (مثل: اعتبار الرشوة مجرد "أتعاب خدمة"، "إكرامية"، أو "عرف مهني").</li>
+        </ol>
+        <p>تنتقل الممارسة الفاسدة عبر الأجيال المهنية المتتابعة بواسطة عملية التنشئة التنظيمية داخل بيئة العمل.</p>
+
+        <!-- Theory 4 -->
+        <h4>4. نظرية الضبط الاجتماعي (Social Control Theory) <span class="level-badge">مستوى التحليل: ميكرو / وسيط</span></h4>
+        <p><strong>الرواد والمرجعيات:</strong> <span class="scholar-badge">ترافيس هيرشي (Travis Hirschi)</span> في كتابه الشهير (Causes of Delinquency - 1969).</p>
+        <p><strong>التفسير الجوهري:</strong> بدلاً من السؤال التقليدي: "لماذا ينحرف الأفراد؟"، تطرح النظرية سؤالاً عكسيًا: **"لماذا يلتزم الأفراد بالقواعد ولا يفسدون؟"**. وتجيب بأن قوة **"الروابط الاجتماعية"** (الارتباط، الالتزام بالأهداف، الانخراط، والإيمان بالقواعد) هي التي تمنع الفرد من الفساد.</p>
+        <p>تميز النظرية بين نوعين من الضبط:</p>
+        <ul>
+          <li><strong>الضبط الرسمي:</strong> القوانين الجزائية والتشريعات التنظيمية (مثل الأمر 06-03 المتعلق بالوظيفة العامة والقانون 06-01).</li>
+          <li><strong>الضبط غير الرسمي:</strong> قوة السمعة الشخصية، الرفض الاجتماعي، القيم الأسرية، والرقابة التشاركية.</li>
+        </ul>
+        <p>عندما تضعف هذه الروابط والضبط غير الرسمي، تصبح "تكلفة الانحراف" منخفضة في نظر الفاعل مقارنة بالمنفعة المتحصلة.</p>
+
+        <!-- Theory 5 -->
+        <h4>5. المقاربة التبادلية والمقاربة الشبكية (Social Exchange & Network Approach) <span class="level-badge">مستوى التحليل: وسيط (Meso)</span></h4>
+        <p><strong>الرواد والمرجعيات:</strong> <span class="scholar-badge">مارك غرانوفيتر (Mark Granovetter) وآخرون</span>.</p>
+
+        <p><strong>1. المقاربة التبادلية (Social Exchange):</strong> تدرس الفساد باعتباره علاقة تبادل منافع غير مشروعة بين فاعلين ينشطون خارج الأطر القانونية. قد يكون هذا التبادل عابرًا أو ممتدًا عبر الزمن، وهو يتطلب درجة عالية من **"الثقة الخاصة"** المتبادلة بين أعضاء الشبكة الفاسدة، والتي تنشأ وتنمو على حساب **"الثقة العامة"** في المؤسسات والقوانين.</p>
+
+        <p><strong>2. المقاربة الشبكية (Network Approach):</strong> تنقل التحليل السوسيولوجي من التبادل الثنائي الفردي (راشي/مرتشي) إلى **خريطة العلاقات الممتدة**. يبرز في هذه المقاربة مفهوم **"الموقع الشبكي"** ودور **"الفاعل الوسيط" (Broker)** الذي يمتلك نفوذًا استراتيجيًا للربط بين أطراف متعددة وتسهيل الوصول للموارد، مما يوضح سبب استمرار الفساد كبنية شبكية حتى عند تغيير أو إبعاد الأفراد.</p>
+
+        <!-- Theory 6 -->
+        <h4>6. المقاربة التنظيمية وتطبيع الفساد داخل المؤسسات (Normalization of Corruption) <span class="level-badge">مستوى التحليل: تنظيمي / مؤسسي</span></h4>
+        <p><strong>الرواد والمرجعيات:</strong> <span class="scholar-badge">فيكاس أناند (Vikas Anand)</span> و<span class="scholar-badge">بليك أشفورث (Blake E. Ashforth)</span>.</p>
+        <p><strong>عمليات التطبيع الثلاث:</strong> تفسر هذه الدراسة الكيفية التي تحول الفساد بها من سلوك فردي استثنائي إلى جزء طبيعي، معتاد، ومقبول ضمن الثقافة التنظيمية للمؤسسة عبر ثلاث عمليات متكاملة:</p>
+        <ol>
+          <li><strong>إضفاء الطابع المؤسسي (Institutionalization):</strong> تكرار السلوك الفاسد ومأسسته حتى ينزاح عن وصفه كمخالفة ليصبح جزءًا روتينيًا من إجراءات المعاملات الإدارية.</li>
+          <li><strong>التبرير (Rationalization):</strong> إنتاج وترويج خطاب تحليلي وإيديولوجي يخفف الشعور بالذنب والتأنيب الأخلاقي لدى الموظف الفاعل.</li>
+          <li><strong>التنشئة الاجتماعية (Socialization):</strong> نقل واستزارة هذه التعريفات والممارسات المطبعة وتمريرها للموظفين المنتسبين الجدد حتى يتأقلموا مع البيئة.</li>
+        </ol>
+
+        <!-- Theory 7 -->
+        <h4>7. مقاربة المعايير الاجتماعية والمقاربة السياقية والتكامل النظري <span class="level-badge">مستوى التحليل: مجتمعي / ثقافي / تكاملي</span></h4>
+        <p><strong>الرواد والمرجعيات:</strong> <span class="scholar-badge">كوبه (Kubbe)</span>، <span class="scholar-badge">بايز-كامارغو (Baez-Camargo)</span>.</p>
+
+        <p><strong>أ. مقاربة المعايير الاجتماعية (Social Norms):</strong> تميز بدقة بين مفهومين:</p>
+        <ul>
+          <li><strong>المعيار الوصفي (Descriptive Norm):</strong> اعتقاد الفرد وتصوره حول ما يفعله الآخرون فعليًا في الواقع (مثل: الاعتقاد بأن الجميع يدفعون رشوة لقضاء معاملاتهم).</li>
+          <li><strong>المعيار الإلزامي/التقييمي (Injunctive Norm):</strong> ما ينبغي فعله وما تنتظره الجماعة والمجتمع أخلاقيًا.</li>
+        </ul>
+        <p>توضح المقاربة أن الاعتقاد الخاطئ بانتشار الفساد يولد تطبيعًا مجتمعيًا ويدفع الأفراد لمسايرته تجنبًا لتكلفة الامتثال المفرد.</p>
+
+        <p><strong>ب. المقاربة السياقية (Contextual Approach):</strong> ترفض التفسيرات التبسيطية التي تبحث عن "سبب عام وأحادي" للفساد، وتصر على تحليل البيئة السياقية المحددة، طبيعة الوظيفة، المصالح، والقواعد غير الرسمية الخاصة بكل حالة على حدة.</p>
+
+        <p><strong>ج. التفسير التكاملي متعدد المستويات (Multi-level Integration):</strong> ينظر للفساد كظاهرة مركبّة تتشابك فيها الأبعاد: <span class="level-badge">فرد</span> ⬅️ <span class="level-badge">جماعة</span> ⬅️ <span class="level-badge">تنظيم</span> ⬅️ <span class="level-badge">مؤسسة</span> ⬅️ <span class="level-badge">بناء مجتمعي</span>. ويتجنب التحليل العلمي الوقوع في خطأين منهجيبن:</p>
+
+        <ul>
+          <li>❌ <strong>خطأ الفردانية المفرطة:</strong> إرجاع الفساد كليًا وشخصيًا إلى ضعف الأخلاق والوازع الفردي فقط.</li>
+          <li>❌ <strong>خطأ الحتمية البنيوية:</strong> اعتبار الفرد مجرد كائن مسلوب الإرادة ونتيجة آلية صماء للمجتمع.</li>
+        </ul>
+
+        <h4>ثامناً: الجدول المقارن الجامع للنظريات السوسيولوجية المفسرة للفساد</h4>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>النظرية / المقاربة</th>
+                <th>أبرز الرواد</th>
+                <th>مستوى التحليل</th>
+                <th>الفكرة التفسيرية الجوهرية للفساد</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>البنائية الوظيفية</strong></td>
+                <td>دوركايم، بارسونز، ميرتون</td>
+                <td>ماكرو / نسقي</td>
+                <td>الفجوة بين وظائف المؤسسة المعلنة والفعلي؛ وظهور "الاختلال الوظيفي" (Dysfunction).</td>
+              </tr>
+              <tr>
+                <td><strong>اللامعيارية (Anomie)</strong></td>
+                <td>دوركايم، ميرتون</td>
+                <td>بنيوي / ماكرو</td>
+                <td>التوتر البنيوي بين الأهداف الثقافية الضاغطة (النجاح المالي) والوسائل المؤسسية المشروعة المتاحة.</td>
+              </tr>
+              <tr>
+                <td><strong>المخالطة والتعلم الاجتماعي</strong></td>
+                <td>إدوين ساذرلاند</td>
+                <td>ميكرو / جماعة</td>
+                <td>تعلم تقنيات الفساد والتبريرات المشجعة عبر التفاعل الاجتماعي والتنشئة المهنية.</td>
+              </tr>
+              <tr>
+                <td><strong>الضبط الاجتماعي</strong></td>
+                <td>ترافيس هيرشي</td>
+                <td>ميكرو / وسيط</td>
+                <td>ضعف الروابط الاجتماعية والضبط غير الرسمي يقلل تكلفة الانحراف ويسهل الفساد.</td>
+              </tr>
+              <tr>
+                <td><strong>التبادل والشبكات</strong></td>
+                <td>غرانوفيتر وآخرون</td>
+                <td>وسيط (Meso)</td>
+                <td>تبادل منافع غير مشروعة؛ ودور "الموقع الشبكي" للفاعل الوسيط (Broker) في استمرار الفساد.</td>
+              </tr>
+              <tr>
+                <td><strong>المقاربة التنظيمية (التطبيع)</strong></td>
+                <td>أناند، أشفورث</td>
+                <td>تنظيمي / مؤسسي</td>
+                <td>تطبيع الفساد عبر 3 عمليات: إضفاء الطابع المؤسسي، التبرير، والتنشئة الاجتماعية.</td>
+              </tr>
+              <tr>
+                <td><strong>المعايير الاجتماعية والسياقية</strong></td>
+                <td>كوبه، بايز-كامارغو</td>
+                <td>مجتمعي / ثقافي / تكاملي</td>
+                <td>تأثير المعيار الوصفي (ما يفعله الآخرون) والتفسير التكاملي متعدد المستويات (فرد-جماعة-مؤسسة).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: MODULE 3 -->
+    <div id="mod3" class="tab-content">
+      <div class="card searchable">
+        <h3>المقطع الثالث: الفساد في السياق الاجتماعي والمؤسساتي والترسانة التشريعية الجزائرية</h3>
+        
+        <h4>أولاً: البنية الاجتماعية وعلاقتها بإنتاج ممارسات الفساد</h4>
+        <p>لا تعتبر الروابط العائلية والقرابية والجهوية في حد ذاتها فسادًا، بل هي جزء طبيعي من البناء الاجتماعي. إلا أن الإشكال يظهر عندما تنقل هذه العلاقات الخاصة إلى مجال ممارسة السلطة العامة أو توزيع الموارد العامة، مما يخل بمبدأ المساواة.</p>
+
+        <ul>
+          <li><strong>مساهمة مارك غرانوفيتر (Mark Granovetter):</strong> أوضح أن الشبكات الاجتماعية والشخصية تدعم التبادل وتبث الثقة، لكنها قد تتحول إلى قنوات لإعادة توزيع الفرص بطرق تخل بالقواعد العامة.</li>
+          <li><strong>دراسة د. محمد علي سلامي (الجزائر):</strong> تناول الفساد المالي كظاهرة اجتماعية مركبة ترتبط بالبنية الاجتماعية والآثار المؤسسية.</li>
+          <li><strong>دراسة عماد بوروح (الجزائر):</strong> درس "جماعات الانتماء والفساد الإداري داخل التنظيمات" في الجزائر، مبيناً كيف تتفاعل رابطة الجهة أو القرابة مع ممارسة السلطة واتخاذ القرار الإداري.</li>
+        </ul>
+
+        <h4>ثانياً: المؤسسة والتنظيم البيروقراطي والأنماط غير الرسمية</h4>
+        <ul>
+          <li><strong>1. البيروقراطية عند ماكس فيبر (Max Weber):</strong> يقوم النموذج البيروقراطي على القواعد العامة وتجرد الوظيفة عن الشخص. لكن الواقع الإداري يظهر مسافة بين "النظام الرسمي" و"الممارسة الفعلية".</li>
+          <li><strong>2. التنظيم غير الرسمي:</strong> ينشأ داخل كل مؤسسة تنظيم غير رسمي يقوم على الثقة أو المصالح. يكون إيجابيًا إذا سهل الاتصال، ويكون انحرافيًا إذا عطل القواعد الرسمية ووجه القرارات لمصالح ضيقة.</li>
+        </ul>
+
+        <h4>ثالثاً: المفاهيم الاجتماعية والمركبة للفساد الإداري</h4>
+        <ul>
+          <li><span class="legal-term">المحسوبية (Nepotism):</span> إعطاء الأفضلية لشخص بناءً على علاقة شخصية أو قرابية في توزيع الفرص والوظائف بدلاً من المعيار العام الموحد.</li>
+          <li><span class="legal-term">تعارض المصالح (Conflict of Interest):</span> نقطة التقاء بين القانون والسوسيولوجيا؛ وهي وجود مصلحة خاصة للموظف تؤثر على موضوعية وحياد قراره الإداري بحكم وظيفته.</li>
+          <li><span class="legal-term">الواسطة (Wasta):</span> تكون مساعدة اجتماعية عادية إذا اقتصرت على التوجيه، وتتحول إلى فساد إذا استخدمت للتأثير غير المشروع وتجاوز الشروط القانونية والمساواة.</li>
+          <li><span class="legal-term">الزبونية (Clientelism):</span> علاقة اجتماعية ممتدة وغير متكافئة تربط طرفًا يملك النفوذ والموارد بطرف محتاج يسعى للوصول إليها مقابل ولاء ودعم مستمر (دراسة <span class="scholar-badge">محمد خداوي</span> في المقاربة الأنثروبولوجية للفساد الإداري).</li>
+          <li><strong>السلطة والمعلومات كمورد:</strong> تعتبر المعلومة موردًا استراتيجيًا؛ والتفاوت في الوصول إليها يخلق اختلالاً هيكليًا يغذي الفساد.</li>
+        </ul>
+
+        <h4>رابعاً: الدراسات الميدانية في البيئة الإدارية الجزائرية</h4>
+        <ul>
+          <li><strong>دراسة نوال بوطرفة:</strong> تناولت الثقافة التنظيمية في المؤسسة الاقتصادية الجزائرية وقراءة ممارسات البيروقراطية.</li>
+          <li><strong>دراسة نجوى أعميرش وصباح عصابة:</strong> تناولتا 'Bureaucratic Practices in Algerian Administration' وأوضحتا أن المحسوبية والرشوة ترتبطان بالبيئة التنظيمية والإدارية.</li>
+          <li><strong>دراسات بلقاسم بومعزة وسعد العيشي:</strong> درسا التفاعل بين الهيكل البيروقراطي والثقافة التنظيمية والبنية الاجتماعية في الإدارة العمومية الجزائرية.</li>
+          <li><strong>دراسة طاهر غراز وفوزية زنقوفي:</strong> تناولا دور الحكامة في الحد من الممارسات السلوكية للفساد الإداري.</li>
+        </ul>
+
+        <h4>خامساً: الأطر التشريعية الوطنية والدولية للشفافية والوقاية في الجزائر</h4>
+        <ul>
+          <li><span class="law-badge">القانون رقم 06-01 (20 فبراير 2006)</span> النص الأساسي لمنظومة مكافحة الفساد في الجزائر، يتضمن تدابير وقائية، تجريمية، واسترداد الموجودات.</li>
+          <li><span class="law-badge">المرسوم الرئاسي رقم 04-128 (19 أبريل 2004)</span> مصادقة الجزائر على اتفاقية الأمم المتحدة لمكافحة الفساد (UNCAC) المعتمدة في 2003 والتي دخلت حيز النفاذ في 2005.</li>
+          <li><span class="law-badge">الاتفاقيات الإقليمية:</span> اتفاقية الاتحاد الإفريقي لمنع الفساد ومكافحته (مابوتو 2003) والاتفاقية العربية لمكافحة الفساد (القاهرة 2010).</li>
+          <li><span class="law-badge">القانون رقم 22-08 (5 مايو 2022)</span> يحدد تنظيم وتشكيل وصلاحيات السلطة العليا للشفافية والوقاية من الفساد ومكافحته كمؤسسة مستقلة تتمتع بالشخصية المعنوية والاستقلال المالي والإداري، تنفيذاً لأحكام المادة 205 من التعديل الدستوري 2020.</li>
+          <li><span class="law-badge">القانون رقم 23-12 (5 أغسطس 2023)</span> يتضمن القواعد العامة للصفقات العمومية، وتكرس <span class="legal-term">المادة 5</span> منه مبادئ: حرية الوصول للطلب العمومي، المساواة في المعاملة، وشفافية الإجراءات.</li>
+          <li><span class="scholar-badge">بو روثشتاين (Bo Rothstein)</span> أكد أن انخفاض الثقة المؤسسية يدفع المواطنين للاعتماد على الشبكات الخاصة، مما يضعف النزاهة في دائرية مغلقة.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- TAB 4: MODULE 4 -->
+    <div id="mod4" class="tab-content">
+      <div class="card searchable">
+        <h3>المقطع الرابع: الوقاية من الفساد ومكافحته من منظور سوسيولوجي</h3>
+        
+        <h4>أولاً: الانتقال من المنطق العقابي البعدي إلى المنطق الوقائي القبلي</h4>
+        <p>لا تقتصر الوقاية السوسيولوجية على العقوبة فقط؛ فالعقوبة تدخل "بعدي" يركز على الفاعل والجريمة، بينما المنطق الوقائي تدخل "قبلي" يهدف إلى إصلاح البيئة المؤسسية والتنظيمية التي سمحت بنشوء الانحراف لمنع تكراره. والمنطقان متكاملان في السياسة الجنائية الشاملة.</p>
+
+        <h4>ثانياً: الوقاية باعتبارها تغييرًا في البيئة وتعديلاً للمعايير الاجتماعية</h4>
+        <ul>
+          <li><strong>معالجة البيئة التنظيمية:</strong> تقتضي الوقاية جعل الإجراءات واضحة، القرارات مسببة وقابلة للمراجعة، والرقابة فعالة (كانت المادة 20 من القانون 06-01 قبل تعديلها تلزم بتقييم الإجراءات والممارسات الإدارية لتفكيك عوامل الفساد في المؤسسة ذاتها).</li>
+          <li><strong>تغيير المعايير الاجتماعية:</strong> أكدت دراسات مرجعية مثل <span class="scholar-badge">كوبه (Kubbe)</span>، <span class="scholar-badge">بايز-كامارغو (Baez-Camargo)</span>، و<span class="scholar-badge">شرباتك-تشيرش (Scharbatke-Church)</span> أن تغيير السلوك يتطلب فهم التوقعات المتبادلة وتفكيك التمثلات السائدة بدلاً من الاقتصار على الخطاب الأخلاقي الوعظي.</li>
+        </ul>
+
+        <h4>ثالثاً: النزاهة المؤسسية والشفافية والمساءلة</h4>
+        <p>أكد <span class="scholar-badge">أشفورث وأناند (Ashforth & Anand)</span> أن الاستثمار الحقيقي في النزاهة يتطلب الاتساق التام بين الخطاب الرسمي والسلوك الفعلي للمسؤولين. وفي التشريع الجزائري، كرت <span class="law-badge">المادة 11 من القانون 06-01</span> حق الجمهور في الحصول على المعلومات المتعلقة بتنظيم وسير الإدارات وتبسيط الإجراءات وتسبيب القرارات.</p>
+
+        <h4>رابعاً: الرقابة والتبليغ عن الفساد وحماية المبلغين</h4>
+        <ul>
+          <li><strong>1. الرقابة المؤسساتية:</strong> تشمل أجهزة الدولة المتخصصة: السلطة العليا للشفافية والوقاية من الفساد ومكافحته، الديوان المركزي لقمع الفساد (ONPLC)، مجلس المحاسبة، والنيابة العامة والمحاكم القضائية المختصة.</li>
+          <li><strong>2. الرقابة الاجتماعية:</strong> يضطلع بها المجتمع المدني، وسائل الإعلام، والجامعة لكشف الاختلالات الميدانية.</li>
+          <li><strong>3. حماية المبلغين والإبلاغ:</strong> تؤكد المادة 33 من اتفاقية الأمم المتحدة (UNCAC) على توفير الأمان النفسي والوظيفي للمبلغين. وفي القانون الجزائري رقم 06-01: تكفل <span class="law-badge">المادتان 45 و46</span> الحماية الجنائية للشهود والخبراء والضحايا والمبلغين وأقاربهم من الانتقام، بينما تجرم <span class="law-badge">المادة 47</span> عدم الإبلاغ من قبل الموظف العلمي بوقائع الفساد، مع التمييز بينها وبين البلاغ الكيدي.</li>
+        </ul>
+
+        <h4>خامساً: التربية، الجامعة، والرقمنة كأدوات وقائية مستحدثة</h4>
+        <ul>
+          <li><strong>التربية والتعليم:</strong> نصت <span class="law-badge">المادة 15 من القانون 06-01</span> على إعداد برامج تعليمية وتكوينية وتحسيسية بالتعاون مع المجتمع المدني لترسيخ ثقافة النزاهة لدى الأجيال الناشئة.</li>
+          <li><strong>الجامعة والبحث العلمي:</strong> تنتج المعرفة العلمية الدقيقة حول مؤشرات الفساد وتفكك الممارسات الميدانية تمييزاً عن الانطباعات العرفية.</li>
+          <li><strong>الرقمنة وعصرنة الإدارة:</strong> تعتبر الرقمنة أداة سوسيولوجية لإصلاح العلاقة بين المواطن والإدارة وتقليل الاحتكاك المباشر. وتتأطر بالترسانة القانونية التالية:
+            <br>• <span class="law-badge">القانون رقم 18-07 المعدل بالقانون رقم 25-11 (24 يوليو 2025)</span> المتعلق بحماية المعطيات ذات الطابع الشخصي.
+            <br>• <span class="law-badge">القانون رقم 26-02 (17 فبراير 2026)</span> المتعلق بخدمات الثقة للمعاملات الإلكترونية والتعريف الإلكتروني (والذي ألغى القانون 15-04 مع الاستمرار الانتقالي للنصوص التطبيقية).
+            <br>• <span class="law-badge">المواد 105 إلى 107 من القانون رقم 23-12</span> المتعلق بالصفقات العمومية والتي أوجبت استعمال البوابة الإلكترونية وتفاعلات الدعوة للمنافسة إلكترونيًا.</li>
+        </ul>
+
+        <h4>سادساً: التوظيف، التصريح بالممتلكات، والاستراتيجية الوطنية 2023-2027</h4>
+        <ul>
+          <li><strong>1. معايير القطاع العام:</strong> تلزم <span class="law-badge">المادة 3 من القانون 06-01</span> بباكتماد معايير الموضوعية والجدارة والكفاءة في التوظيف بالقطاع العام. وتوجب <span class="law-badge">المادة 4</span> التصريح بالممتلكات، بينما تنظم <span class="law-badge">المادة 8</span> الإعلان عن حالات تعارض المصالح.</li>
+          <li><strong>2. الاستراتيجية الوطنية (2023-2027):</strong> تنفيذاً لأحكام القانون رقم 22-08 (المادة 4 منه)، أطلقت الجزائر الاستراتيجية الوطنية للشفافية والوقاية من الفساد ومكافحته للفترة 2023-2027، متبوعة بنشر النظام الداخلي ومدونة الأخلاقيات الخاصة بالسلطة العليا سنة 2026 لتكريس الاستقامة والحياد.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- TAB 5: QUICK REVIEW CARDS -->
+    <div id="review" class="tab-content">
+      <div class="section-title">
+        <h2>⚡ بطاقات المراجعة السريعة والحفظ الجامعي</h2>
+      </div>
+
+      <div class="grid-2">
+        <div class="review-card searchable">
+          <h4>📌 الأركان الـ 5 للفعل الفاسد سوسيولوجياً</h4>
+          <p>1. موقع السلطة أو القرار التنظيمي.<br>2. سوء الاستغلال والتجاوز.<br>3. الحصول أو منح منفعة خاصة.<br>4. العلاقة التبادلية والتواطؤ.<br>5. السياق الاجتماعي والمؤسساتي المحيط.</p>
+        </div>
+
+        <div class="review-card searchable">
+          <h4>🔬 النظريات السوسيولوجية والرواد (المقطع الثاني)</h4>
+          <p>• <strong>البنائية الوظيفية:</strong> ميرتون (الوظائف الكامنة والاختلال الوظيفي).<br>• <strong>اللامعيارية:</strong> دوركايم وميرتون (التوتر البنيوي بين الأهداف والوسائل).<br>• <strong>المخالطة التفاضلية:</strong> ساذرلاند (تعلم التقنيات والتبريرات).<br>• <strong>الضبط الاجتماعي:</strong> هيرشي (الروابط الاجتماعية والضبط غير الرسمي).<br>• <strong>التطبيع التنظيمي:</strong> أناند وأشفورث (المأسسة، التبرير، التنشئة).</p>
+        </div>
+
+        <div class="review-card searchable">
+          <h4>⚖️ مواد مفتاحية في القانون 06-01</h4>
+          <p>• <strong>المادة 3:</strong> الاعتماد على الجدارة والكفاءة في التوظيف.<br>• <strong>المادة 4:</strong> إلزامية التصريح بالممتلكات.<br>• <strong>المادة 8:</strong> الإعلان عن حالات تعارض المصالح.<br>• <strong>المادة 11:</strong> حق الحصول على المعلومات وتسبيب القرارات.<br>• <strong>المادتان 45 و46:</strong> الحماية الجنائية للمبلغين والشهود.<br>• <strong>المادة 47:</strong> تجريم عدم الإبلاغ عن الفساد.</p>
+        </div>
+
+        <div class="review-card searchable">
+          <h4>📜 مبادئ المادة 5 من قانون الصفقات 23-12</h4>
+          <p>1. حرية الوصول إلى الطلب العمومي.<br>2. المساواة في معاملة المرشحين.<br>3. شفافية الإجراءات.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 6: QUIZZES -->
+    <div id="quizzes" class="tab-content">
+      <div class="section-title">
+        <h2>📝 اختبارات تفاعلية متعددة الخيارات</h2>
+      </div>
+
+      <div id="quizContainer">
+        <!-- Q1 -->
+        <div class="quiz-card" id="q1">
+          <div class="quiz-question">س1: ما هو المفهوم السوسيولوجي للفساد مقارنة بالمفهوم القانوني؟</div>
+          <div class="quiz-options">
+            <button class="option-btn" onclick="checkAnswer('q1', 0, 1, 'المفهوم السوسيولوجي ينظر للفساد كظاهرة اجتماعية تتشكل وتستمر داخل شبكة علاقات ومؤسسات وقواعد رسمية وغير رسمية، وليس مجرد نص قانوني مجرم.')">أ) يقتصر فقط على الجرائم المنصوص عليها في قانون العقوبات.</button>
+            <button class="option-btn" onclick="checkAnswer('q1', 1, 1, 'المفهوم السوسيولوجي ينظر للفساد كظاهرة اجتماعية تتشكل وتستمر داخل شبكة علاقات ومؤسسات وقواعد رسمية وغير رسمية، وليس مجرد نص قانوني مجرم.')">ب) ينظر للفساد باعتباره ظاهرة اجتماعية وممارسة تتشكل داخل شبكة علاقات ومؤسسات وقواعد رسمية وغير رسمية.</button>
+            <button class="option-btn" onclick="checkAnswer('q1', 2, 1, 'المفهوم السوسيولوجي ينظر للفساد كظاهرة اجتماعية تتشكل وتستمر داخل شبكة علاقات ومؤسسات وقواعد رسمية وغير رسمية، وليس مجرد نص قانوني مجرم.')">ج) يركز حصرًا على إحصاء عدد جرائم الرشوة وتحديد عقوباتها الجزائية.</button>
+          </div>
+          <div class="explanation-box" id="q1-exp"></div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="quiz-card" id="q2">
+          <div class="quiz-question">س2: أي من النظريات التالية ترجع الفساد إلى التوتر البنيوي بين الأهداف الثقافية والوسائل المشروعة المتاحة؟</div>
+          <div class="quiz-options">
+            <button class="option-btn" onclick="checkAnswer('q2', 0, 2, 'نظرية اللامعيارية (Anomie) عند روبرت ميرتون تعزو الفساد للفجوة والتوتر بين الأهداف الضاغطة (كالنجاح المالي) وقلة الوسائل المؤسسية المشروعة المتاحة.')">أ) نظرية المخالطة التفاضلية لـ ساذرلاند.</button>
+            <button class="option-btn" onclick="checkAnswer('q2', 1, 2, 'نظرية اللامعيارية (Anomie) عند روبرت ميرتون تعزو الفساد للفجوة والتوتر بين الأهداف الضاغطة (كالنجاح المالي) وقلة الوسائل المؤسسية المشروعة المتاحة.')">ب) نظرية الضبط الاجتماعي لـ ترافيس هيرشي.</button>
+            <button class="option-btn" onclick="checkAnswer('q2', 2, 2, 'نظرية اللامعيارية (Anomie) عند روبرت ميرتون تعزو الفساد للفجوة والتوتر بين الأهداف الضاغطة (كالنجاح المالي) وقلة الوسائل المؤسسية المشروعة المتاحة.')">ج) نظرية اللامعيارية (Anomie Theory) لـ روبرت ميرتون.</button>
+          </div>
+          <div class="explanation-box" id="q2-exp"></div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="quiz-card" id="q3">
+          <div class="quiz-question">س3: ما هي أركان عملية "تطبيع الفساد" داخل المنظمات حسب دراسة أناند وأشفورث (Anand & Ashforth)؟</div>
+          <div class="quiz-options">
+            <button class="option-btn" onclick="checkAnswer('q3', 0, 0, 'تتكون عملية التطبيع التنظيمي من 3 عمليات متكاملة: إضفاء الطابع المؤسسي (المأسسة)، التبرير، والتنشئة الاجتماعية.')">أ) إضفاء الطابع المؤسسي، التبرير، والتنشئة الاجتماعية.</button>
+            <button class="option-btn" onclick="checkAnswer('q3', 1, 0, 'تتكون عملية التطبيع التنظيمي من 3 عمليات متكاملة: إضفاء الطابع المؤسسي (المأسسة)، التبرير، والتنشئة الاجتماعية.')">ب) التجريم القانوني، الرقابة الجزائية، والردع العقابي.</button>
+            <button class="option-btn" onclick="checkAnswer('q3', 2, 0, 'تتكون عملية التطبيع التنظيمي من 3 عمليات متكاملة: إضفاء الطابع المؤسسي (المأسسة)، التبرير، والتنشئة الاجتماعية.')">ج) اللامعيارية البنيوية، ضعف الضبط الرسمي، والمحسوبية.</button>
+          </div>
+          <div class="explanation-box" id="q3-exp"></div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="quiz-card" id="q4">
+          <div class="quiz-question">س4: تنص المادة 47 من القانون رقم 06-01 في التشريع الجزائري على:</div>
+          <div class="quiz-options">
+            <button class="option-btn" onclick="checkAnswer('q4', 0, 0, 'المادة 47 تجرم وتعاقب عدم الإبلاغ من قبل الموظف الذي علم بحكم وظيفته بوقائع فساد، بينما المادتان 45 و46 تقرران الحماية الجنائية للمبلغين.')">أ) تجريم عدم الإبلاغ عن وقائع الفساد لمن علم بها بحكم وظيفته.</button>
+            <button class="option-btn" onclick="checkAnswer('q4', 1, 0, 'المادة 47 تجرم وتعاقب عدم الإبلاغ من قبل الموظف الذي علم بحكم وظيفته بوقائع فساد، بينما المادتان 45 و46 تقرران الحماية الجنائية للمبلغين.')">ب) تقديم الحماية الجنائية للمبلغين والشهود وأقاربهم من الانتقام.</button>
+            <button class="option-btn" onclick="checkAnswer('q4', 2, 0, 'المادة 47 تجرم وتعاقب عدم الإبلاغ من قبل الموظف الذي علم بحكم وظيفته بوقائع فساد، بينما المادتان 45 و46 تقرران الحماية الجنائية للمبلغين.')">ج) التزام الموظف بالتصريح السنوي بالممتلكات لدى السلطة العليا.</button>
+          </div>
+          <div class="explanation-box" id="q4-exp"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 7: EXAM Q&A -->
+    <div id="exam" class="tab-content">
+      <div class="section-title">
+        <h2>🎓 أسئلة وإجابات الامتحانات النموذجية المتوقعة</h2>
+      </div>
+
+      <div class="qa-card searchable">
+        <button class="qa-header" onclick="toggleQA('qa1')">
+          <span>س1: كيف تميز سوسيولوجيا الفساد بين "الوصف" و"التفسير" للظاهرة؟</span>
+          <span>▼</span>
+        </button>
+        <div class="qa-body" id="qa1">
+          <p><strong>الإجابة النموذجية:</strong> يكتفي <strong>الوصف الإمبريقي</strong> بحصر أعداد جرائم الفساد وتكييفها المادي والقانوني وإحصاء المرتكبين، بينما ينطلق <strong>التفسير السوسيولوجي</strong> للبحث عن الأسباب والشروط التنظيمية والثقافية والشبكية التي جعلت السلوك الفاسد ممكناً وقابلاً للتكرار والاستمرار داخل بيئة مؤسسية محددة رغم وجود العقوبات.</p>
+        </div>
+      </div>
+
+      <div class="qa-card searchable">
+        <button class="qa-header" onclick="toggleQA('qa2')">
+          <span>س2: اشرح كيف تفسر "نظرية اللامعيارية" عند ميرتون نشوء السلوك الفاسد؟</span>
+          <span>▼</span>
+        </button>
+        <div class="qa-body" id="qa2">
+          <p><strong>الإجابة النموذجية:</strong> ترجع النظرية الفساد إلى **التوتر البنيوي** الناجم عن فرض المجتمع لأهداف ثقافية ضاغطة (كالنجاح المالي والجاه) دون توفير فرص متساوية ووسائل مؤسسية مشروعة لجميع الأفراد للوصول إليها، مما يدفع بعضهم لتبني وسائل غير مشروعة كالرشوة واختلاس الوظيفة للوصول إلى المأرب المرغوب.</p>
+        </div>
+      </div>
+
+      <div class="qa-card searchable">
+        <button class="qa-header" onclick="toggleQA('qa3')">
+          <span>س3: ما هي أركان عملية "تطبيع الفساد" داخل المنظمات حسب دراسة (Anand & Ashforth)؟</span>
+          <span>▼</span>
+        </button>
+        <div class="qa-body" id="qa3">
+          <p><strong>الإجابة النموذجية:</strong> تتكون من 3 عمليات متكاملة:<br>1. **إضفاء الطابع المؤسسي (Institutionalization):** تحول المخالفة الفردية إلى جزء روتيني من إجراءات العمل.<br>2. **التبرير (Rationalization):** صياغة وإيعاز خطاب يخفف شعور الفاعل بالذنب والتأنيب.<br>3. **التنشئة الاجتماعية (Socialization):** نقل مفاهيم وممارسات التطبيع إلى الموظفين الجدد.</p>
+        </div>
+      </div>
+
+      <div class="qa-card searchable">
+        <button class="qa-header" onclick="toggleQA('qa4')">
+          <span>س4: ما الفرق بين "القرابة" و"المحسوبية" (Nepotism) من الناحية السوسيولوجية؟</span>
+          <span>▼</span>
+        </button>
+        <div class="qa-body" id="qa4">
+          <p><strong>الإجابة النموذجية:</strong> <strong>القرابة</strong> هي رابطة اجتماعية طبيعية قائمة بذاتها ولا تعتبر فسادًا في أصلها. أما <strong>المحسوبية</strong> فهي طريقة استغلال وتوظيف هذه الرابطة القرابية عند توزيع الفرص أو الوظائف أو الصفقات العامة بأسلوب يخل بمبدأ المساواة والاستحقاق والكفاءة لصالح الأقارب.</p>
+        </div>
+      </div>
+
+      <div class="qa-card searchable">
+        <button class="qa-header" onclick="toggleQA('qa5')">
+          <span>س5: ما هو التمييز الجوهري بين المادتين 45 و47 من القانون رقم 06-01 في الجزائر؟</span>
+          <span>▼</span>
+        </button>
+        <div class="qa-body" id="qa5">
+          <p><strong>الإجابة النموذجية:</strong> تقرر <strong>المادة 45</strong> (وكذا المادة 46) الحماية الجنائية المقررة للشهود والخبراء والضحايا والمبلغين وأفراد عائلاتهم من أي انتقام أو ترهيب، بينما <strong>المادة 47</strong> تعاقب وتجرم "عدم الإبلاغ" لمن علم بحكم مهنته أو وظيفته بوقائع فساد ولم يبلغ السلطات المختصة في الوقت المناسب.</p>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      منصة الشفافية ومكافحة الفساد | مصممة اعتمادًا حصريًا على ملخص مقياس سوسيولوجيا الفساد M1
+    </footer>
+
+  </div>
+
+  <script>
+    // Tab Switcher Engine
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+      
+      document.getElementById(tabId).classList.add('active');
+      event.currentTarget.classList.add('active');
+    }
+
+    // Live Search Engine Filter
+    function filterContent() {
+      let query = document.getElementById('searchInput').value.toLowerCase().trim();
+      let cards = document.querySelectorAll('.searchable');
+
+      cards.forEach(card => {
+        let text = card.innerText.toLowerCase();
+        if (text.includes(query) || query === '') {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Interactive Quiz Engine
+    function checkAnswer(quizId, optionIdx, correctIdx, explanation) {
+      let quizCard = document.getElementById(quizId);
+      let options = quizCard.querySelectorAll('.option-btn');
+      let expBox = quizCard.querySelector('.explanation-box');
+
+      options.forEach((btn, idx) => {
+        btn.disabled = true;
+        if (idx === correctIdx) {
+          btn.classList.add('correct');
+        } else if (idx === optionIdx) {
+          btn.classList.add('incorrect');
+        }
+      });
+
+      expBox.style.display = 'block';
+      if (optionIdx === correctIdx) {
+        expBox.innerHTML = '<strong>✅ إجابة صحيحة!</strong><br>' + explanation;
+      } else {
+        expBox.innerHTML = '<strong>❌ إجابة خاطئة!</strong><br>' + explanation;
+      }
+    }
+
+    // Accordion Toggle for Q&A
+    function toggleQA(qaId) {
+      let body = document.getElementById(qaId);
+      body.classList.toggle('show');
+    }
+  </script>
+</body>
+</html>
